@@ -2,7 +2,19 @@
 #include <stdlib.h>
 
 // ordenação por inserção
-void insertion(int *A, int n);
+void insertion(int *A, int n){
+    for (int i = 1; i < n; i++){
+        int novoItem = A[i]; // item a ser isetido na posição correta
+        int posicao = i-1;
+        while(posicao >= 0 && (novoItem < A[posicao])) {
+            A[posicao+1] = A[posicao];
+            posicao--;
+        }
+        
+        A[posicao+1] = novoItem;
+        posicao++;
+    }
+}
 
 
 // merge sort
