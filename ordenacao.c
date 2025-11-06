@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "ordenacao.h"
 
 // ordenação por inserção
 void insertion(int *A, int n){
@@ -69,4 +70,34 @@ void mergesort2(int *A, int n) {
 }
 
 // quicksort
-void quicksort(int *A, int n);
+int particionar(int *A, int posicaoInicial, int ultimaPosicao){
+    int pivo = A[ultimaPosicao]; // define po pivô como o último item
+    int posicaoAtual = posicaoInicial-1;
+    for (int j = posicaoInicial; j < ultimaPosicao; j++){
+        if(A[j] <= pivo) {
+            posicaoAtual++;
+            int aux = A[posicaoAtual];
+            A[posicaoAtual] = A[j];
+            A[j] = aux;
+        }
+    }
+
+    // colocará o pivô na posição correta
+    int aux = A[posicaoAtual+1];
+    A[posicaoAtual+1]= A[ultimaPosicao]; // pivô na posição correta
+    A[ultimaPosicao] = aux;
+    return posicaoAtual+1; // posição do pivô
+}
+
+void quicksort2(int *A, int posicaoInicial, int ultimaPosicao) {
+    if (posicaoInicial < ultimaPosicao) {
+        int posicaoPivo = particionar(A, posicaoInicial, ultimaPosicao);
+        quicksort2(A, posicaoInicial, posicaoPivo-1);
+        quicksort2(A, posicaoPivo+1, ultimaPosicao);
+    }
+
+}
+
+void quicksort(int *A, int n){
+    quicksort2(A, 0, n-1);
+}
