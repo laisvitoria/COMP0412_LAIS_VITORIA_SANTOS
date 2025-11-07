@@ -33,21 +33,21 @@ int main() {
         return 1;
     }
 
-    fprintf(arquivo, "Tamanho,QuickSort,MergeSort,InsertionSort\n");
+    fprintf(arquivo, "Tamanho,InsertionSort,MergeSort,QuickSort\n");
 
     printf("=======================================\n");
-    printf("BENCHMARK - QUICKSORT x MERGESORT x INSERTION\n");
+    printf("BENCHMARK - INSERTION x MERGESORT x QUICKSORT\n");
     printf("=======================================\n");
 
     for (int i = 0; i < numTestes; i++) {
         int tamanho = 10000 + rand() % 100000;
         int *vetor = gerarVetor(tamanho);
 
-        double tempoQuick = medirTempo(quicksort, vetor, tamanho);
-        double tempoMerge = medirTempo(mergesort2, vetor, tamanho);
         double tempoInsertion = medirTempo(insertion, vetor, tamanho);
+        double tempoMerge = medirTempo(mergesort2, vetor, tamanho);
+        double tempoQuick = medirTempo(quicksort, vetor, tamanho);
 
-        fprintf(arquivo, "%d,%.8f,%.8f,%.8f\n", tamanho, tempoQuick, tempoMerge, tempoInsertion);
+        fprintf(arquivo, "%d,%.8f,%.8f,%.8f\n", tamanho, tempoInsertion, tempoMerge, tempoQuick);
 
         printf("Tamanho: %10d | Insertion: %.6fs | Merge: %.6fs | Quick: %.6fs\n",
                tamanho, tempoInsertion, tempoMerge, tempoQuick);
