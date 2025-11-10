@@ -3,6 +3,10 @@
 #include "ordenacao.h"
 
 // ordenação por inserção
+// novoitem = 6
+// posicao= 0
+// A: 5, 6, 1, 2
+// 1, 5, 6
 void insertion(int *A, int n){
     for (int i = 1; i < n; i++){
         int novoItem = A[i]; // item a ser isetido na posição correta
